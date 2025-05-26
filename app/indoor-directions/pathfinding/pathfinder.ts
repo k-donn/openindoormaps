@@ -21,11 +21,16 @@ export default class Pathfinder {
 
     const distances: Record<Vertex, number> = {};
     const previous: Record<Vertex, Vertex | null> = {};
-    const queue: Vertex[] = this.graph.getVertexs();
+    // Only include routable vertices in the queue
+    const queue: Vertex[] = this.graph.getVertices().filter((v) => {
+      const props = this.graph.getVertexProperties?.(v);
+      return props && (props.isRoutable !== false || v === start || v == end);
+    });
+    queue.push(start, end);
 
-    this.graph.getVertexs().forEach((Vertex) => {
-      distances[Vertex] = Infinity;
-      previous[Vertex] = null;
+    this.graph.getVertices().forEach((vertex) => {
+      distances[vertex] = Infinity;
+      previous[vertex] = null;
     });
     distances[start] = 0;
 
@@ -36,10 +41,16 @@ export default class Pathfinder {
       if (current === end) break;
 
       this.graph.getEdges(current).forEach(({ to, weight }) => {
-        const alt = distances[current] + weight;
-        if (alt < distances[to]) {
-          distances[to] = alt;
-          previous[to] = current;
+        const props = this.graph.getVertexProperties?.(to);
+        if (
+          props &&
+          (props.isRoutable !== false || to === start || to === end)
+        ) {
+          const alt = distances[current] + weight;
+          if (alt < distances[to]) {
+            distances[to] = alt;
+            previous[to] = current;
+          }
         }
       });
     }

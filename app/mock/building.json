@@ -1,5 +1,5 @@
 {
-  "id": 1,
+  "id": "17249577",
   "name": "Driftmier",
   "description": "UGA Driftmier Engineering Center",
   "address": "597 DW Brooks Dr, Athens, GA 30605",
@@ -3267,7 +3267,7 @@
           "name": "Room 1520",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3282,7 +3282,7 @@
           "name": "Room 1509",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3297,7 +3297,7 @@
           "name": "Room 1506",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3312,7 +3312,7 @@
           "name": "Room 1500",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3327,7 +3327,7 @@
           "name": "Room 1505",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3342,7 +3342,7 @@
           "name": "Room 1503",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3357,7 +3357,7 @@
           "name": "Room 1459",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3372,7 +3372,7 @@
           "name": "Room 1457",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3387,7 +3387,7 @@
           "name": "Room 1408",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3402,7 +3402,7 @@
           "name": "Room 1406",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3417,7 +3417,7 @@
           "name": "Room 1453",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3432,7 +3432,7 @@
           "name": "Room 1453A",
           "type": "computer",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3447,7 +3447,7 @@
           "name": "Room 1402A",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3462,7 +3462,7 @@
           "name": "Room 1451A",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3477,7 +3477,7 @@
           "name": "Room 1451",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3492,7 +3492,7 @@
           "name": "Room 1340",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3507,7 +3507,7 @@
           "name": "Room 1402",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3522,7 +3522,7 @@
           "name": "Room 1367",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3537,7 +3537,7 @@
           "name": "Room 1314A",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3552,7 +3552,7 @@
           "name": "Room 1361",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3567,7 +3567,7 @@
           "name": "Room 1314",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3582,7 +3582,7 @@
           "name": "Room 1330",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3597,7 +3597,7 @@
           "name": "Room 1310",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3612,7 +3612,7 @@
           "name": "Room 1304",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3627,7 +3627,7 @@
           "name": "Room 1330A",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3642,7 +3642,7 @@
           "name": "Room 1198C",
           "type": "stairs",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3657,7 +3657,7 @@
           "name": "Room 1355",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3672,7 +3672,7 @@
           "name": "Room 1351",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3687,7 +3687,7 @@
           "name": "Room 1353A",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3702,7 +3702,7 @@
           "name": "Room 1302",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3717,7 +3717,7 @@
           "name": "Room 1570",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3732,7 +3732,7 @@
           "name": "Room 1568",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3747,7 +3747,7 @@
           "name": "Room 1566",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3762,7 +3762,7 @@
           "name": "Room 1562",
           "type": "study",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3777,7 +3777,7 @@
           "name": "Room 1550",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3792,7 +3792,7 @@
           "name": "Room 1555",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3807,7 +3807,7 @@
           "name": "Room 1553",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3822,7 +3822,7 @@
           "name": "Room 1461",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3837,7 +3837,7 @@
           "name": "Room 1463",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3852,7 +3852,7 @@
           "name": "Room 1410",
           "type": "shop",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3867,7 +3867,7 @@
           "name": "Room 1460",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3882,7 +3882,7 @@
           "name": "Room 1456",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3897,7 +3897,7 @@
           "name": "Room 1450",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3912,7 +3912,7 @@
           "name": "Room 1364",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3927,7 +3927,7 @@
           "name": "Room 1360",
           "type": "computer",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3942,7 +3942,7 @@
           "name": "Room 1360C",
           "type": "computer",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3957,7 +3957,7 @@
           "name": "Room 1256",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3972,7 +3972,7 @@
           "name": "Room 1306A",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -3987,7 +3987,7 @@
           "name": "Room 1206B",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4002,7 +4002,7 @@
           "name": "Room 1409",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4017,7 +4017,7 @@
           "name": "Room 1405",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4032,7 +4032,7 @@
           "name": "Room 1401",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4047,7 +4047,7 @@
           "name": "Room 1311",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4062,7 +4062,7 @@
           "name": "Room 1307",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4077,7 +4077,7 @@
           "name": "Room 1307A",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4092,7 +4092,7 @@
           "name": "Room 1301",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4107,7 +4107,7 @@
           "name": "Room 1218",
           "type": "class",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4122,7 +4122,7 @@
           "name": "Room 1207",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4137,7 +4137,7 @@
           "name": "Room 1209",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4152,7 +4152,7 @@
           "name": "Room 1211",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4167,7 +4167,7 @@
           "name": "Room 1213",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4182,7 +4182,7 @@
           "name": "Room 1214",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4197,7 +4197,7 @@
           "name": "Room 1212",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4212,7 +4212,7 @@
           "name": "Room 1210",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4227,7 +4227,7 @@
           "name": "Room 1208",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4242,7 +4242,7 @@
           "name": "Room 1215",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4257,7 +4257,7 @@
           "name": "Room 1217",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4272,7 +4272,7 @@
           "name": "Room 1264",
           "type": "computer",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4287,7 +4287,7 @@
           "name": "Room 1260",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4302,7 +4302,7 @@
           "name": "Room 1258",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4317,7 +4317,7 @@
           "name": "Room 1257",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4332,7 +4332,7 @@
           "name": "Room 1259",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4347,7 +4347,7 @@
           "name": "Room 1261",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4362,7 +4362,7 @@
           "name": "Room 1263",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4377,7 +4377,7 @@
           "name": "Room 1265",
           "type": "lounge",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4392,7 +4392,7 @@
           "name": "Room 1350",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4407,7 +4407,7 @@
           "name": "Room 1290",
           "type": "study",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4422,7 +4422,7 @@
           "name": "Room 1286",
           "type": "study",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4437,7 +4437,7 @@
           "name": "Room 1284",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4452,7 +4452,7 @@
           "name": "Room 1282",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4467,7 +4467,7 @@
           "name": "Room 1280",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4482,7 +4482,7 @@
           "name": "Room 1271",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4497,7 +4497,7 @@
           "name": "Room 1273",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4512,7 +4512,7 @@
           "name": "Room 1275",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4527,7 +4527,7 @@
           "name": "Room 1287",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4542,7 +4542,7 @@
           "name": "Room 1285",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4557,7 +4557,7 @@
           "name": "Room 1283",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4572,7 +4572,7 @@
           "name": "Room 1281",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4587,7 +4587,7 @@
           "name": "Room 1277",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4602,7 +4602,7 @@
           "name": "Room 1278",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4617,7 +4617,7 @@
           "name": "Room 1276",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4632,7 +4632,7 @@
           "name": "Room 1270",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4647,7 +4647,7 @@
           "name": "Room 1272",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4662,7 +4662,7 @@
           "name": "Room 1274",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4677,7 +4677,7 @@
           "name": "Room 1256",
           "type": "computer",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4692,7 +4692,7 @@
           "name": "Room 1198B",
           "type": "stairs",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4707,7 +4707,7 @@
           "name": "Room 1254",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4722,7 +4722,7 @@
           "name": "Room 1252",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4737,7 +4737,7 @@
           "name": "Room 1250",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4752,7 +4752,7 @@
           "name": "Room 1157",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4767,7 +4767,7 @@
           "name": "Room 1204",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4782,7 +4782,7 @@
           "name": "Room 1200",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4797,7 +4797,7 @@
           "name": "Room 1202",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4812,7 +4812,7 @@
           "name": "Room 1111",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4827,7 +4827,7 @@
           "name": "Room 1111",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4842,7 +4842,7 @@
           "name": "Room 1198A",
           "type": "stairs",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4857,7 +4857,7 @@
           "name": "Room 1110",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4872,7 +4872,7 @@
           "name": "Room 1108",
           "type": "toilets",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4887,7 +4887,7 @@
           "name": "Room 1107",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4902,7 +4902,7 @@
           "name": "Room 1101",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4917,7 +4917,7 @@
           "name": "Room 1151",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4932,7 +4932,7 @@
           "name": "Room 1153",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4947,7 +4947,7 @@
           "name": "Room 1155",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4962,7 +4962,7 @@
           "name": "Room 1159A",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4977,7 +4977,7 @@
           "name": "Room 1159",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -4992,7 +4992,7 @@
           "name": "Room 1161",
           "type": "storage",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5007,7 +5007,7 @@
           "name": "Room 1163",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5022,7 +5022,7 @@
           "name": "Room 1165",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5037,7 +5037,7 @@
           "name": "Room 1166",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5052,7 +5052,7 @@
           "name": "Room 1164",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5067,7 +5067,7 @@
           "name": "Room 1160",
           "type": "office",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5082,7 +5082,7 @@
           "name": "Room 1152",
           "type": "laboratory",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5097,7 +5097,7 @@
           "name": "Room 1150",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5112,7 +5112,7 @@
           "name": "Room 1100",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5127,7 +5127,7 @@
           "name": "Room 1106A",
           "type": "meeting",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5142,7 +5142,7 @@
           "name": "Room 1106C",
           "type": "conference",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5157,7 +5157,7 @@
           "name": "Room 1106",
           "type": "reception",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5172,7 +5172,7 @@
           "name": "Room 1106B",
           "type": "conference",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       },
       {
@@ -5187,7 +5187,7 @@
           "name": "Room 1353",
           "type": "utility",
           "floor": 0,
-          "building_id": "BUILDING_001"
+          "building_id": "17249577"
         }
       }
     ]

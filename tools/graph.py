@@ -211,7 +211,7 @@ def embed_graph(G, handler):
                         min_dist = d
                         nearest_node = node
                 if nearest_node is not None:
-                    H.add_edge(nearest_node, str(neighbor))
+                    H.add_edge(str(neighbor), nearest_node)
 
     return H
 

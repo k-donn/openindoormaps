@@ -13,7 +13,7 @@ import {
   buildSnaplines,
 } from "./utils";
 export default class IndoorDirections extends IndoorDirectionsEvented {
-  protected declare readonly map: maplibregl.Map;
+  declare protected readonly map: maplibregl.Map;
   private readonly pathFinder: PathFinder;
 
   protected readonly configuration: MapLibreGlDirectionsConfiguration;
@@ -165,13 +165,16 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
           const from = JSON.stringify(coordinates[i]);
           const to = JSON.stringify(coordinates[i + 1]);
 
+          const toIsRoutable = feature.properties.to_is_routable;
+          const fromIsRoutable = feature.properties.from_is_routable;
+
           // Calculate distance as weight
           const weight = this.calculateDistance(
             coordinates[i],
             coordinates[i + 1],
           );
 
-          graph.addEdge(from, to, weight);
+          graph.addEdge(from, to, weight, toIsRoutable, fromIsRoutable);
 
           const fromOverlaps = coordMap.get(from);
           if (fromOverlaps && fromOverlaps.size > 1) {
@@ -186,6 +189,8 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
                       from,
                       JSON.stringify(otherCoords[idx - 1]),
                       weight,
+                      toIsRoutable,
+                      fromIsRoutable,
                     );
                   }
                   if (idx < otherCoords.length - 1) {
@@ -193,6 +198,8 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
                       from,
                       JSON.stringify(otherCoords[idx + 1]),
                       weight,
+                      toIsRoutable,
+                      fromIsRoutable,
                     );
                   }
                 }

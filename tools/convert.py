@@ -93,7 +93,7 @@ class LevelFeatureHandler(osmium.SimpleHandler):
                             "name": f"Room {props["ref"]}" if "ref" in props else f"Room #{self.curr_poi_id}",
                             "type": raw_props["room"],
                             "floor": int(props["level_id"]),
-                            "building_id": "BUILDING_001"
+                            "building_id": "17249577"
                         }
 
                         # Calculate centroid as average of all coordinates in the geometry
@@ -163,7 +163,7 @@ def main():
     try:
         with open(args.geojson_file, 'w') as f:
             res = {
-                "id": 1,
+                "id": "17249577",
                 "name": "Driftmier",
                 "description": "UGA Driftmier Engineering Center",
                 "address": "597 DW Brooks Dr, Athens, GA 30605",
@@ -188,5 +188,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # This ensures that main() is called only when the script is executed directly
     main()
