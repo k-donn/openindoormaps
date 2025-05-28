@@ -80,10 +80,7 @@ export default function NavigationView({
         throw new Error("Invalid geocoding results");
       }
 
-      const departureCoord = departureGeo.coordinates as [number, number];
-      const destinationCoord = destinationGeo.coordinates as [number, number];
-
-      indoorDirections?.setWaypoints([departureCoord, destinationCoord]);
+      indoorDirections?.setWaypoints([departureGeo, destinationGeo]);
 
       const routeGeometry =
         indoorDirections?.routelinesCoordinates[0]?.[0]?.geometry;

@@ -1,12 +1,14 @@
 import { CustomLayerInterface, Map } from "maplibre-gl";
+import { IndoorFeature, IndoorMapGeoJSON } from "~/types/geojson";
 
 export default class POIsLayer implements CustomLayerInterface {
   id: string = "pois";
   type = "custom" as const;
-  private POIs: GeoJSON.GeoJSON;
+  private map: Map | null = null;
+  private POIs: IndoorMapGeoJSON;
   private theme;
 
-  constructor(POIs: GeoJSON.GeoJSON, theme: string = "light") {
+  constructor(POIs: IndoorMapGeoJSON, theme: string = "light") {
     this.POIs = POIs;
     this.theme = theme;
   }
@@ -15,7 +17,24 @@ export default class POIsLayer implements CustomLayerInterface {
     // Rendering is handled by maplibre's internal renderer for geojson sources
   };
 
+  setFloorLevel(level: number) {
+    console.log("set poi floor level " + level);
+    if (!this.map || !this.POIs) return;
+
+    const source = this.map.getSource("pois") as maplibregl.GeoJSONSource;
+    const filteredFeatures = this.POIs.features.filter(
+      (feature: IndoorFeature) =>
+        feature.properties.floor === level || feature.properties.floor === null,
+    );
+
+    source.setData({
+      type: "FeatureCollection",
+      features: filteredFeatures,
+    });
+  }
+
   onAdd?(map: Map): void {
+    this.map = map;
     const lightColor = {
       text: "#404040",
       halo: "#ffffff",

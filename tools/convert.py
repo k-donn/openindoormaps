@@ -19,7 +19,7 @@ def flatten_coords(c):
 
 class LevelFeatureHandler(osmium.SimpleHandler):
     """
-    Osmium handler to process OSM elements and convert those with a 'level' tag
+    Osmium handler to process OSM elements and convert those with a "level" tag
     into GeoJSON features.
     """
 
@@ -32,16 +32,14 @@ class LevelFeatureHandler(osmium.SimpleHandler):
     def way(self, w):
         """
         Process OSM ways.
-        If a way has a 'level' tag, convert it to a GeoJSON LineString or Polygon feature.
+        If a way has a "level" tag, convert it to a GeoJSON LineString or Polygon feature.
         """
-        if 'level' in w.tags:
+        if "level" in w.tags:
             raw_props = {tag.k: tag.v for tag in w.tags}
             if "highway" in raw_props:
                 if raw_props["highway"] == "elevator":
                     # TODO: handle elevators
                     return
-            if int(raw_props["level"]) != 0:
-                return
             props = {}
             props["level_id"] = int(raw_props["level"])
             props["area"] = 0
@@ -68,7 +66,7 @@ class LevelFeatureHandler(osmium.SimpleHandler):
             # try:
             if w.is_closed():
                 # For closed ways, attempt to create a Polygon.
-                # Osmium's create_polygon is somewhat strict (e.g., expects area tags or no conflicting tags).
+                # Osmium"s create_polygon is somewhat strict (e.g., expects area tags or no conflicting tags).
                 try:
                     geom_str = geojson_factory.create_multipolygon(w)
                 except:
@@ -83,7 +81,7 @@ class LevelFeatureHandler(osmium.SimpleHandler):
                     geom = geojson.loads(geom_str)
                     
                     if "feature_type" in props and props["feature_type"] == "unit":
-                        coordinates = geom['coordinates']
+                        coordinates = geom["coordinates"]
                         polygon = Polygon(coordinates)
                         scaled_poly = scale(polygon, xfact=0.95, yfact=0.95, origin="centroid")
                         geom = geojson.loads(geojson.dumps(scaled_poly.__geo_interface__))
@@ -129,13 +127,13 @@ def main():
     Main function to parse arguments, run the OSM processing, and write the GeoJSON output.
     """
     parser = argparse.ArgumentParser(
-        description='Convert OSM elements with a "level" tag to GeoJSON.')
+        description="Convert OSM elements with a 'level' tag to GeoJSON.")
     parser.add_argument(
-        'osm_file', help='Input OSM file (e.g., .osm, .osm.pbf)')
+        "osm_file", help="Input OSM file (e.g., .osm, .osm.pbf)")
     parser.add_argument(
-        'route_file', help='Input route file from graph.py')
+        "route_file", help="Input route file from graph.py")
     parser.add_argument(
-        'geojson_file', help='Output GeoJSON file (e.g., building.json)')
+        "geojson_file", help="Output GeoJSON file (e.g., building.json)")
 
     args = parser.parse_args()
 
@@ -143,7 +141,7 @@ def main():
 
     try:
         sys.stdout.write(f"Processing OSM file: {args.osm_file}...\n")
-        level_handler.apply_file(args.osm_file, locations=True, idx='flex_mem')
+        level_handler.apply_file(args.osm_file, locations=True, idx="flex_mem")
     except FileNotFoundError:
         sys.stderr.write(f"Error: Input OSM file not found: {args.osm_file}\n")
         sys.exit(1)
@@ -161,7 +159,7 @@ def main():
         indoor_routes = geojson.load(f)
 
     try:
-        with open(args.geojson_file, 'w') as f:
+        with open(args.geojson_file, "w") as f:
             res = {
                 "id": "17249577",
                 "name": "Driftmier",
@@ -187,5 +185,5 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -12,6 +12,7 @@ import {
   buildRouteLines,
   buildSnaplines,
 } from "./utils";
+import { POI } from "~/types/poi";
 export default class IndoorDirections extends IndoorDirectionsEvented {
   declare protected readonly map: maplibregl.Map;
   private readonly pathFinder: PathFinder;
@@ -26,6 +27,7 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
   protected snappoints: GeoJSON.Feature<GeoJSON.Point>[] = [];
   protected routelines: GeoJSON.Feature<GeoJSON.LineString>[][] = [];
   private coordMap: Map<string, Set<GeoJSON.Position[]>> = new Map();
+  private graph: Graph = new Graph();
 
   constructor(
     map: maplibregl.Map,
@@ -107,18 +109,31 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
   private findNearestGraphPoint(
     point: GeoJSON.Position,
     coordMap: Map<string, Set<GeoJSON.Position[]>>,
+    floor: number,
   ): GeoJSON.Position | null {
     let nearest: GeoJSON.Position | null = null;
     let minDistance = Infinity;
 
-    coordMap.forEach((_, coordStr) => {
-      const coord = JSON.parse(coordStr);
-      const distance = this.calculateDistance(point, coord);
-      if (distance < minDistance) {
-        minDistance = distance;
-        nearest = coord;
-      }
-    });
+    // coordMap.forEach((_, coordStr) => {
+    //   const coord = JSON.parse(coordStr);
+    //   const distance = this.calculateDistance(point, coord);
+    //   if (distance < minDistance) {
+    //     minDistance = distance;
+    //     nearest = coord;
+    //   }
+    // });
+
+    this.graph
+      .getVertices()
+      .filter((vert) => this.graph.getVertexProperties(vert)?.floor === floor)
+      .forEach((vert) => {
+        const coord = JSON.parse(vert);
+        const distance = this.calculateDistance(point, coord);
+        if (distance < minDistance) {
+          minDistance = distance;
+          nearest = coord;
+        }
+      });
 
     return nearest;
   }
@@ -128,6 +143,7 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
       const nearest = this.findNearestGraphPoint(
         waypoint.geometry.coordinates,
         this.coordMap,
+        waypoint.properties.floor,
       );
 
       return this.buildPoint(
@@ -139,7 +155,6 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
 
   public loadMapData(geoJson: GeoJSON.FeatureCollection) {
     const coordMap = new Map<string, Set<GeoJSON.Position[]>>();
-    const graph = new Graph();
 
     this.coordMap = coordMap;
 
@@ -168,59 +183,80 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
           const toIsRoutable = feature.properties.to_is_routable;
           const fromIsRoutable = feature.properties.from_is_routable;
 
+          const toFloor = feature.properties.to_floor;
+          const fromFloor = feature.properties.from_floor;
+
           // Calculate distance as weight
           const weight = this.calculateDistance(
             coordinates[i],
             coordinates[i + 1],
           );
 
-          graph.addEdge(from, to, weight, toIsRoutable, fromIsRoutable);
+          this.graph.addEdge(
+            from,
+            to,
+            weight,
+            toIsRoutable,
+            fromIsRoutable,
+            toFloor,
+            fromFloor,
+          );
 
-          const fromOverlaps = coordMap.get(from);
-          if (fromOverlaps && fromOverlaps.size > 1) {
-            fromOverlaps.forEach((otherCoords) => {
-              if (otherCoords == coordinates) {
-                const idx = otherCoords.findIndex(
-                  (c) => JSON.stringify(c) === from,
-                );
-                if (idx !== -1) {
-                  if (idx > 0) {
-                    graph.addEdge(
-                      from,
-                      JSON.stringify(otherCoords[idx - 1]),
-                      weight,
-                      toIsRoutable,
-                      fromIsRoutable,
-                    );
-                  }
-                  if (idx < otherCoords.length - 1) {
-                    graph.addEdge(
-                      from,
-                      JSON.stringify(otherCoords[idx + 1]),
-                      weight,
-                      toIsRoutable,
-                      fromIsRoutable,
-                    );
-                  }
-                }
-              }
-            });
-          }
+          // const fromOverlaps = coordMap.get(from);
+          // if (fromOverlaps && fromOverlaps.size > 1) {
+          //   fromOverlaps.forEach((otherCoords) => {
+          //     if (otherCoords == coordinates) {
+          //       const idx = otherCoords.findIndex(
+          //         (c) => JSON.stringify(c) === from,
+          //       );
+          //       if (idx !== -1) {
+          //         if (idx > 0) {
+          //           this.graph.addEdge(
+          //             from,
+          //             JSON.stringify(otherCoords[idx - 1]),
+          //             weight,
+          //             toIsRoutable,
+          //             fromIsRoutable,
+          //             toFloor,
+          //             fromFloor,
+          //           );
+          //         }
+          //         if (idx < otherCoords.length - 1) {
+          //           this.graph.addEdge(
+          //             from,
+          //             JSON.stringify(otherCoords[idx + 1]),
+          //             weight,
+          //             toIsRoutable,
+          //             fromIsRoutable,
+          //             toFloor,
+          //             fromFloor,
+          //           );
+          //         }
+          //       }
+          //     }
+          //   });
+          // }
         }
       }
     });
 
-    this.pathFinder.setGraph(graph);
+    this.pathFinder.setGraph(this.graph);
   }
   /**
    * Replaces all the waypoints with the specified ones and re-fetches the routes.
    *
    * @param waypoints The coordinates at which the waypoints should be added
    */
-  public setWaypoints(waypoints: [number, number][]) {
+  public setWaypoints(waypoints: POI[]) {
     // this.abortController?.abort();
 
-    this._waypoints = waypoints.map((coord) => buildPoint(coord, "WAYPOINT"));
+    this._waypoints = waypoints.map((waypoint) =>
+      buildPoint(
+        waypoint.coordinates as [number, number],
+        "WAYPOINT",
+        waypoint.properties,
+      ),
+    );
     this.assignWaypointsCategories();
 
     const waypointEvent = new IndoorDirectionsWaypointEvent(

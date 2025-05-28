@@ -7,3 +7,4 @@
 - Add level info for snap points
 - Change IndoorDirections.calculateDirections to put level into on each segment
 - Change IndoorDirections.draw to only draw the part of the segment corresponding to the selected level
+- Access current floor from IndoorDirections

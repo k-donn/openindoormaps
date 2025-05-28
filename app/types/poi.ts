@@ -14,5 +14,7 @@ export interface POI {
   id: number;
   name: string;
   coordinates: GeoJSON.Position;
-  // future properties will be added here
+  properties: {
+    floor: string;
+  };
 }

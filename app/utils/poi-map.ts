@@ -29,7 +29,8 @@ unitFeatures.forEach((unitFeature) => {
         booleanPointInPolygon(
           poiCoordinates,
           unitFeature as GeoJSON.Feature<GeoJSON.Polygon>,
-        )
+        ) &&
+        unitFeature.properties.level_id === poiFeature.properties.floor
       ) {
         poiMap.get(Number(unitFeature.id))?.push(poiFeature);
 

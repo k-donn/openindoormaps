@@ -24,11 +24,10 @@ export default class Pathfinder {
     // Only include routable vertices in the queue
     const queue: Vertex[] = this.graph.getVertices().filter((v) => {
       const props = this.graph.getVertexProperties?.(v);
-      return props && (props.isRoutable !== false || v === start || v == end);
+      return props && (props.isRoutable !== false || v === start || v === end);
     });
-    queue.push(start, end);
 
-    this.graph.getVertices().forEach((vertex) => {
+    queue.forEach((vertex) => {
       distances[vertex] = Infinity;
       previous[vertex] = null;
     });

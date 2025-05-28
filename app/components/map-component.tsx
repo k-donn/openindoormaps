@@ -30,6 +30,10 @@ export default function MapComponent() {
       ),
     [theme],
   );
+  const indoorPOILayer = useMemo(
+    () => new POIsLayer(building.pois as IndoorMapGeoJSON, theme as string),
+    [theme],
+  );
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -45,9 +49,7 @@ export default function MapComponent() {
       try {
         // map.addLayer(new Tile3dLayer());
         map.addLayer(indoorMapLayer);
-        map.addLayer(
-          new POIsLayer(building.pois as GeoJSON.GeoJSON, theme as string),
-        );
+        map.addLayer(indoorPOILayer);
       } catch (error) {
         console.error("Failed to initialize map layers:", error);
       }
@@ -80,7 +82,10 @@ export default function MapComponent() {
       <DiscoveryPanel />
       {process.env.NODE_ENV === "development" && (
         <>
-          <FloorSelector indoorMapLayer={indoorMapLayer} />
+          <FloorSelector
+            indoorMapLayer={indoorMapLayer}
+            indoorPOILayer={indoorPOILayer}
+          />
           <FloorUpDownControl indoorMapLayer={indoorMapLayer} />
         </>
       )}

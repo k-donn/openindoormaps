@@ -19,6 +19,7 @@ export default class IndoorMapLayer implements CustomLayerInterface {
   };
 
   setFloorLevel(level: number) {
+    console.log("set floor level" + level);
     if (!this.map || !this.indoorMapData) return;
 
     const source = this.map.getSource("indoor-map") as maplibregl.GeoJSONSource;
