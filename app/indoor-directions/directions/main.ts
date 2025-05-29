@@ -128,7 +128,10 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
 
     this.graph
       .getVertices()
-      .filter((vert) => this.graph.getVertexProperties(vert)?.floor === floor)
+      .filter((vert) => {
+        const props = this.graph.getVertexProperties?.(vert);
+        return props && props.floor === floor;
+      })
       .forEach((vert) => {
         const coord = JSON.parse(vert);
         const distance = this.calculateDistance(point, coord);

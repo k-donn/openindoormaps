@@ -87,8 +87,10 @@ export default function NavigationView({
         throw new Error("No route found");
       }
       const coordinates: [number, number][] = [];
-      routeParts.forEach((routePart: GeoJSON.Feature) => {
-        coordinates.push(...routePart.geometry.coordinates);
+      routeParts.forEach((routePart: GeoJSON.Feature<GeoJSON.LineString>) => {
+        coordinates.push(
+          ...(routePart.geometry.coordinates as [number, number][]),
+        );
       });
 
       let bounds = new LngLatBounds(coordinates[0], coordinates[0]);

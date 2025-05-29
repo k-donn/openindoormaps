@@ -54,7 +54,7 @@ export function buildRouteLines(
   legIndex = 0,
   origin?: GeoJSON.Feature,
   destination?: GeoJSON.Feature,
-): GeoJSON.LineString[] {
+): GeoJSON.Feature<GeoJSON.LineString>[] {
   const generalProperties = {
     id: nanoid(),
     route: "SELECTED",
@@ -86,10 +86,9 @@ export function buildRouteLines(
       },
     },
   };
-  const features: { [id: number]: GeoJSON.Feature } = {};
+  const features: { [id: number]: GeoJSON.Feature<GeoJSON.LineString> } = {};
   const floorsUsed = new Set();
-  for (let i = 0; i < coordinates.length - 1; i++) {
-    const coordsTriple = coordinates[i];
+  for (const coordsTriple of coordinates) {
     const floor = coordsTriple[2];
     if (!floorsUsed.has(floor)) {
       floorsUsed.add(floor);
@@ -104,7 +103,7 @@ export function buildRouteLines(
           type: "LineString",
           coordinates: [[coordsTriple[0], coordsTriple[1]]],
         },
-      } as GeoJSON.Feature;
+      } as GeoJSON.Feature<GeoJSON.LineString>;
       features[floor] = feature;
     }
     {
