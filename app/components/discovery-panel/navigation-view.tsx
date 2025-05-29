@@ -82,13 +82,14 @@ export default function NavigationView({
 
       indoorDirections?.setWaypoints([departureGeo, destinationGeo]);
 
-      const routeGeometry =
-        indoorDirections?.routelinesCoordinates[0]?.[0]?.geometry;
-      if (!routeGeometry?.coordinates?.length) {
+      const routeParts = indoorDirections?.routelinesCoordinates;
+      if (!routeParts?.length) {
         throw new Error("No route found");
       }
-
-      const coordinates = routeGeometry.coordinates as [number, number][];
+      const coordinates: [number, number][] = [];
+      routeParts.forEach((routePart: GeoJSON.Feature) => {
+        coordinates.push(...routePart.geometry.coordinates);
+      });
 
       let bounds = new LngLatBounds(coordinates[0], coordinates[0]);
       for (const coord of coordinates) {

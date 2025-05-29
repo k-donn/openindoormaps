@@ -1,6 +1,7 @@
 import { LayerSpecification } from "maplibre-gl";
 
 export type Vertex = string;
+export type VertexProperties = { isRoutable: boolean; floor: number };
 export type Edge = { to: Vertex; weight: number };
 
 export interface MapLibreGlDirectionsConfiguration {

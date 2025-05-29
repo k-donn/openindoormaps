@@ -13,6 +13,8 @@ import {
   buildSnaplines,
 } from "./utils";
 import { POI } from "~/types/poi";
+import useFloorStore from "~/stores/floor-store";
+
 export default class IndoorDirections extends IndoorDirectionsEvented {
   declare protected readonly map: maplibregl.Map;
   private readonly pathFinder: PathFinder;
@@ -25,7 +27,7 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
 
   protected _waypoints: GeoJSON.Feature<GeoJSON.Point>[] = [];
   protected snappoints: GeoJSON.Feature<GeoJSON.Point>[] = [];
-  protected routelines: GeoJSON.Feature<GeoJSON.LineString>[][] = [];
+  protected routelines: GeoJSON.Feature<GeoJSON.LineString>[] = [];
   private coordMap: Map<string, Set<GeoJSON.Position[]>> = new Map();
   private graph: Graph = new Graph();
 
@@ -54,6 +56,10 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
     this.configuration.layers.forEach((layer) => {
       this.map.addLayer(layer);
     });
+
+    useFloorStore.subscribe((state) => {
+      this.draw(state.currentFloor);
+    });
   }
 
   protected get waypointsCoordinates(): [number, number][] {
@@ -80,10 +86,7 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
 
   protected get snaplines() {
     return this.snappoints.length > 1
-      ? this.buildSnaplines(
-          this.waypointsCoordinates,
-          this.snappointsCoordinates,
-        )
+      ? this.buildSnaplines(this._waypoints, this.snappoints)
       : [];
   }
 
@@ -143,12 +146,13 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
       const nearest = this.findNearestGraphPoint(
         waypoint.geometry.coordinates,
         this.coordMap,
-        waypoint.properties.floor,
+        waypoint.properties?.floor,
       );
 
       return this.buildPoint(
         (nearest as [number, number]) || waypoint.geometry.coordinates,
         "SNAPPOINT",
+        { floor: waypoint.properties?.floor },
       );
     });
   }
@@ -268,8 +272,6 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
 
     this.fire(waypointEvent);
 
-    this.draw();
-
     try {
       this.calculateDirections(waypointEvent);
     } catch (error) {
@@ -304,25 +306,30 @@ export default class IndoorDirections extends IndoorDirectionsEvented {
         new IndoorDirectionsRoutingEvent("calculateroutesend", originalEvent),
       );
 
-      this.routelines = [this.buildRouteLines(routes)];
+      this.routelines = this.buildRouteLines(routes);
     } else {
       this.routelines = [];
     }
+    const currentFloor = useFloorStore.getState().currentFloor;
 
-    this.draw();
+    this.draw(currentFloor);
   }
 
-  protected draw() {
+  protected draw(currentFloor: number) {
     const features = [
       ...this._waypoints,
       ...this.snappoints,
       ...this.snaplines,
-      ...this.routelines.flat(),
+      ...this.routelines,
     ];
+
+    const currentFeatures = features.filter(
+      (feat) => feat.properties?.floor === currentFloor,
+    );
 
     const geoJson: GeoJSON.FeatureCollection = {
       type: "FeatureCollection",
-      features,
+      features: currentFeatures,
     };
 
     if (this.map.getSource(this.configuration.sourceName)) {

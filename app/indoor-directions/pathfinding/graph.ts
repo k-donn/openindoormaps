@@ -1,9 +1,8 @@
-import { Vertex, Edge } from "../types";
+import { Vertex, VertexProperties, Edge } from "../types";
 
 export default class Graph {
   adjacencyList: Map<Vertex, Edge[]> = new Map();
-  propertiesMap: Map<Vertex, { isRoutable: boolean; floor: number }> =
-    new Map();
+  propertiesMap: Map<Vertex, VertexProperties> = new Map();
 
   addVertex(Vertex: Vertex, isRoutable: boolean, floor: number) {
     const base = Vertex.split("]")[0];
@@ -39,9 +38,7 @@ export default class Graph {
     return [...this.adjacencyList.keys()];
   }
 
-  public getVertexProperties?(
-    vertex: string,
-  ): { isRoutable: boolean; floor: number } | undefined {
+  public getVertexProperties?(vertex: string): VertexProperties | undefined {
     return this.propertiesMap.get(vertex);
   }
 
