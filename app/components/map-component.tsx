@@ -75,7 +75,7 @@ export default function MapComponent() {
     return () => {
       map.remove();
     };
-  }, [indoorMapLayer, setMapInstance, theme]);
+  }, [indoorMapLayer, indoorPOILayer, setMapInstance, theme]);
 
   return (
     <div className="flex size-full flex-col">

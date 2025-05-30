@@ -30,7 +30,7 @@ unitFeatures.forEach((unitFeature) => {
           poiCoordinates,
           unitFeature as GeoJSON.Feature<GeoJSON.Polygon>,
         ) &&
-        unitFeature.properties.level_id === poiFeature.properties.floor
+        unitFeature.properties?.level_id === poiFeature.properties?.floor
       ) {
         poiMap.get(Number(unitFeature.id))?.push(poiFeature);
 
