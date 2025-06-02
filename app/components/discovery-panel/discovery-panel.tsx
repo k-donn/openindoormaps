@@ -70,6 +70,9 @@ export default function DiscoveryPanel() {
           id: firstPOI.properties?.id as number,
           name: firstPOI.properties?.name as string,
           coordinates: firstPOI.geometry.coordinates,
+          properties: {
+            floor: firstPOI.properties?.floor,
+          },
         };
         setSelectedPOI(poi);
         if (mode === "discovery" || mode === "detail") {
