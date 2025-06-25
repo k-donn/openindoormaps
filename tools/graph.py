@@ -23,14 +23,22 @@ class LevelWayHandler(osmium.SimpleHandler):
         # way_ids -> LineString with room:area or room:corridor
         self.route_geojsons = defaultdict()
         self.dest_ways = set()  # all other way_ids
+        self.door_nodes = set()
         self.node_to_ways = defaultdict(set)  # node_id -> set of way_ids
         self.node_locations = {}  # node_id -> (lat, lon)
+        self.node_tags = {} # node_id -> tags
         self._way_locations = {}  # way_id -> (lat, lon)
 
     def node(self, n):
         self.node_locations[n.id] = (n.location.lat, n.location.lon)
+        tags = {tag.k: tag.v for tag in n.tags}
+        self.node_tags[n.id] = tags
+        is_door = tags.get("door", False)
+        level = tags.get("level", None)
+        if is_door and int(level) == self.level_id:
+            self.door_nodes.add(n.id)
 
-    def way(self, w):
+    def way(self, w: osmium.osm.Way):
         tags = {tag.k: tag.v for tag in w.tags}
         indoor_type = tags.get("indoor", None)
         level = tags.get("level", None)
@@ -39,7 +47,7 @@ class LevelWayHandler(osmium.SimpleHandler):
         if level is None:
             return
         else:
-            if room_type == "elevator":
+            if room_type == "elevator" or room_type == "stairs":
                 min_level = int(level.split("-")[0])
                 max_level = int(level.split("-")[1])
                 if self.level_id < min_level or self.level_id > max_level:
@@ -81,10 +89,8 @@ class LevelWayHandler(osmium.SimpleHandler):
                     geometry=centerline_geom, properties={"id": way_id})
                 self.route_geojsons[way_id] = feature
 
-        elif room_type == "elevator":
+        elif room_type == "elevator" or room_type == "stairs":
             self.vertical_ways.add(way_id)
-        else:
-            self.dest_ways.add(way_id)
 
         for node_id in node_ids:
             self.node_to_ways[node_id].add(way_id)
@@ -106,27 +112,55 @@ class LevelWayHandler(osmium.SimpleHandler):
 def build_graph(handler):
     G = nx.Graph()
 
-    for way_id in handler.way_nodes:
+    vert_adj_nodes = set()
+    for vert_way in handler.vertical_ways:
         # Try to get lat/lon from the handler (if available)
         lat = getattr(handler, "_way_locations", {}
-                      ).get(way_id, (None, None))[0]
+                      ).get(vert_way, (None, None))[0]
         lon = getattr(handler, "_way_locations", {}
-                      ).get(way_id, (None, None))[1]
-        G.add_node(
-            way_id,
-            is_routable=way_id in handler.route_ways or way_id in handler.vertical_ways,
-            is_vertical=way_id in handler.vertical_ways,
-            lat=lat,
-            lon=lon,
-            floor=handler.level_id
-        )
+                      ).get(vert_way, (None, None))[1]
+
+        G.add_node(vert_way, is_routable=True, is_vertical=True,
+                   lat=lat, lon=lon, floor=handler.level_id)
+        vert_adj_nodes.update(handler.way_nodes[vert_way])
+
+    for door_id in handler.door_nodes:
+        # Try to get lat/lon from the handler (if available)
+        lat = getattr(handler, "_way_locations", {}
+                      ).get(door_id, (None, None))[0]
+        lon = getattr(handler, "_way_locations", {}
+                      ).get(door_id, (None, None))[1]
+        connects_vert_way = door_id in vert_adj_nodes
+        G.add_node(door_id, is_routable=connects_vert_way, is_vertical=False, lat=lat,
+                   lon=lon,
+                   floor=handler.level_id)
+
+    for vert_way in handler.vertical_ways:
+        shared_nodes = handler.way_nodes[vert_way]
+        for adj_node in shared_nodes:
+            if adj_node in handler.door_nodes:
+                G.add_edge(vert_way, adj_node)
 
     for area_way_id in handler.route_ways:
+        # Try to get lat/lon from the handler (if available)
+        lat = getattr(handler, "_way_locations", {}
+                      ).get(area_way_id, (None, None))[0]
+        lon = getattr(handler, "_way_locations", {}
+                      ).get(area_way_id, (None, None))[1]
+
+        G.add_node(area_way_id, is_routable=True, is_vertical=False,
+                   lat=lat, lon=lon, floor=handler.level_id)
         shared_nodes = handler.way_nodes[area_way_id]
         connected_ways = set()
 
         for node_id in shared_nodes:
-            connected_ways.update(handler.node_to_ways[node_id])
+            if node_id in handler.door_nodes:
+                connected_ways.add(node_id)
+            else:
+                adj_ways = handler.node_to_ways[node_id]
+                for adj_way in adj_ways:
+                    if adj_way in handler.route_ways:
+                        connected_ways.add(adj_way)
 
         connected_ways.discard(area_way_id)
 
@@ -248,7 +282,7 @@ def embed_graph(G, handler):
     return H
 
 
-def visualize_graph(G, is_geograph):
+def visualize_graph(G, is_geograph=False):
     pos = None
     if is_geograph:
         pos = {n: (d["lon"], d["lat"]) for n, d in G.nodes(data=True)
@@ -269,18 +303,19 @@ def visualize_graph(G, is_geograph):
     nx.draw_networkx_nodes(G, pos, nodelist=non_route_nodes,
                            node_color="skyblue", node_size=300, label="Non-route ways")
     nx.draw_networkx_nodes(G, pos, nodelist=route_nodes, node_color="red",
-                           node_size=300, label="Room:area/corridor ways")
+                           node_size=300, label="Routable ways")
     nx.draw_networkx_nodes(G, pos, nodelist=vertical_nodes, node_color="darkblue",
                            node_size=300, label="Vertical ways")
 
     nx.draw_networkx_edges(G, pos, edge_color="gray")
     nx.draw_networkx_labels(G, pos, font_size=8)
 
-    plt.title("Way Connection Graph via room:area / room:corridor (Level 0)")
+    plt.title("Way Connection Graph")
     plt.legend()
     plt.axis("off")
     plt.tight_layout()
     plt.show()
+
 
 def combine_level_graphs(G1, G2):
     H = nx.Graph()
@@ -289,14 +324,16 @@ def combine_level_graphs(G1, G2):
     H.add_nodes_from(G2.nodes(data=True))
     H.add_edges_from(G2.edges(data=True))
 
-    vertical_nodes = [n for n, d in H.nodes(data=True) if d.get("is_vertical", False)]
+    vertical_nodes = [n for n, d in H.nodes(
+        data=True) if d.get("is_vertical", False)]
 
     for u, v in itertools.combinations(vertical_nodes, 2):
         parent_u = u.split("_")[0]
         parent_v = v.split("_")[0]
         if parent_u == parent_v:
-            H.add_edge(u,v)
+            H.add_edge(u, v)
     return H
+
 
 def extract_graph_features(graph):
     features = []
@@ -334,28 +371,27 @@ def main(osm_file, route_file, visualize, visualize_geo):
     graph_0 = build_graph(handler_0)
     graph_1 = build_graph(handler_1)
 
-    geo_graph_0 = embed_graph(graph_0, handler_0)
-    geo_graph_1 = embed_graph(graph_1, handler_1)
+    # geo_graph_0 = embed_graph(graph_0, handler_0)
+    # geo_graph_1 = embed_graph(graph_1, handler_1)
 
     if visualize:
         visualize_graph(graph_0)
-        visualize_graph(graph_1)
+        # visualize_graph(graph_1)
 
+    # geo_graph = combine_level_graphs(geo_graph_0, geo_graph_1)
 
-    geo_graph = combine_level_graphs(geo_graph_0, geo_graph_1)
+    # if visualize_geo:
+    #     visualize_graph(geo_graph, True)
 
-    if visualize_geo:
-        visualize_graph(geo_graph, True)
+    # geo_features = extract_graph_features(geo_graph)
 
-    geo_features = extract_graph_features(geo_graph)
+    # geo_feature_collection = geojson.FeatureCollection(geo_features)
 
-    geo_feature_collection = geojson.FeatureCollection(geo_features)
+    # with open(route_file, "w") as f:
+    #     geojson.dump(geo_feature_collection, f)
 
-    with open(route_file, "w") as f:
-        geojson.dump(geo_feature_collection, f)
-
-    print(
-        f"Geographic Graph has {geo_graph.number_of_nodes()} nodes and {geo_graph.number_of_edges()} edges.")
+    # print(
+    #     f"Geographic Graph has {geo_graph.number_of_nodes()} nodes and {geo_graph.number_of_edges()} edges.")
 
 
 if __name__ == "__main__":
